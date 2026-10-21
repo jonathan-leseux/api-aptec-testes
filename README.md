@@ -1,9 +1,11 @@
  API de Gerenciamento de Tarefas 
 
-• Descrição 
+Integrantes: Jonathan Leseux da Costa e Matheus Pedroso Ostauro Costa
+
+Descrição 
 Este projeto é uma API REST para gerenciamento de tarefas vinculadas a usuários. Foi desenvolvido em Java com Spring Boot e utiliza uma arquitetura organizada em controllers, services, repositories e models. O projeto também possui configuração de segurança com Spring Security e JWT. 
 
-•  Tecnologias utilizadas
+Tecnologias utilizadas
 - Java 21 - Spring Boot 3.5.5 
 - Spring Web para criação dos endpoints REST 
 - Spring Data JPA para persistência de dados 
@@ -14,7 +16,7 @@ Este projeto é uma API REST para gerenciamento de tarefas vinculadas a usuário
 - JUnit 5, Mockito e Spring Boot Test para testes automatizados 
 - JaCoCo para medir a cobertura de código 
 
-• Organização do projeto 
+Organização do projeto 
 
 src/
  main/
@@ -29,7 +31,7 @@ src/
 test/ 
       java/ # Testes automatizados 
 
-• Endpoints de tarefas 
+Endpoints de tarefas 
 
 A classe TaskController define os seguintes endpoints: 
 
@@ -43,7 +45,7 @@ A classe TaskController define os seguintes endpoints:
 
 Os endpoints podem estar sujeitos às regras de autenticação e autorização configuradas na aplicação. 
 
-• Configuração e execução 
+Configuração e execução 
 
 1. Instale o JDK 21. 
 2. Configure o banco de dados MySQL e as propriedades da aplicação em src/main/resources/application.properties. 
@@ -57,7 +59,7 @@ Windows:
  powershell 
 .\mvnw.cmd spring-boot:run
 
-• Executar os testes Para executar a suíte de testes: 
+Executar os testes Para executar a suíte de testes: 
 
 Linux/macOS: 
 bash 
@@ -67,7 +69,7 @@ Windows:
 powershell 
 .\mvnw.cmd test 
 
- Para limpar, executar os testes e gerar o relatório JaCoCo (após a configuração do plugin no pom.xml): 
+Para limpar, executar os testes e gerar o relatório JaCoCo (após a configuração do plugin no pom.xml): 
 
 powershell 
 .\mvnw.cmd clean verify 
