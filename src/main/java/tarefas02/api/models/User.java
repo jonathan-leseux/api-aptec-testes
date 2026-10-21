@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -106,9 +107,8 @@ public class User {
         return Objects.hash(this.id, this.username, this.password);
     }
 
+    @JsonIgnore
     public Set<ProfileEnums> getProfiles() {
-       
-        
-        throw new UnsupportedOperationException("Unimplemented method 'getProfiles'");
-    }
+        return java.util.Collections.emptySet();
+}
 }

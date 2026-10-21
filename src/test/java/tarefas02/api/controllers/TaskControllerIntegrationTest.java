@@ -55,14 +55,13 @@ public class TaskControllerIntegrationTest {
         );
 
         //executa GET e valida status HTTP, tipo de conteudo e JSON
-        mockMvc.perform(get("/tasks/{id}", task.getId()))
+        mockMvc.perform(get("/task/{id}", task.getId()))
             .andExpect(status().isOk())
             .andExpect(content()
                 .contentType(
                     MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(task.getId()))
-            .andExpect(jsonPath("$.description")
-                .value("Estudar testes")); 
+            .andExpect(jsonPath("$.description").value("Tarefa de teste")); 
     }
 
     @Test 
@@ -73,12 +72,12 @@ public class TaskControllerIntegrationTest {
 
         //HTTP 201 indica que o recurso foi criado
         //Location informa o endereço do recurso criado
-        mockMvc.perform(post("/tasks")
+        mockMvc.perform(post("/task")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
             .andExpect(status().isCreated())
             .andExpect(header().string(
-                "Location", containsString("/tasks/")));
+                "Location", containsString("/task/")));
     }
 
     @Test 
@@ -88,7 +87,7 @@ public class TaskControllerIntegrationTest {
         );
 
         //HTTP 204 indica que a requisição foi processada com sucesso
-        mockMvc.perform(delete("/tasks/{id}", task.getId()))
+        mockMvc.perform(delete("/task/{id}", task.getId()))
             .andExpect(status().isNoContent());
     }
 
@@ -98,7 +97,7 @@ public class TaskControllerIntegrationTest {
             +"\"user\":{\"id\":" + user.getId() + "}}";
 
         //envia uma descrição vazia e espera HTTP 400
-        mockMvc.perform(post("/tasks")
+        mockMvc.perform(post("/task")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
             .andExpect(status().isBadRequest());

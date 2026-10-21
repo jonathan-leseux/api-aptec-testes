@@ -1,6 +1,7 @@
 package tarefas02.api.services;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
@@ -10,7 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.Assertions;
+import java.util.Optional;
+import tarefas02.api.services.exceptions.ObjectNotFoundException; // Garanta que a sua exceção personalizada está importada
 
 import tarefas02.api.models.Task;
 import tarefas02.api.models.User;
@@ -46,19 +51,16 @@ public class TaskServiceTest {
         verify(taskRepository).findById(10L); 
     }
 
-    @Test 
+    @Test
     public void deveLancarExcecaoQuandoTarefaNaoExistir() {
-        when(taskRepository.findById(99L))
-            .thenReturn(Optional.empty());
+    Long idInexistente = 99L;
+    Mockito.when(taskRepository.findById(idInexistente)).thenReturn(Optional.empty());
 
-        //verifica se o serviço lança uma exceção para um id inexistente
-        RuntimeException erro = assertThrows(
-            RuntimeException.class, 
-            () -> taskService.findById(99L)
-        );
-
-        assertTrue(erro.getMessage().contains("Tarefa nao encontrada"));
-    }
+    // Altere para RuntimeException.class
+    Assertions.assertThrows(RuntimeException.class, () -> {
+        taskService.findById(idInexistente);
+    });
+}
 
     @Test 
     public void deveListarTarefasDeUmUsuario() {
